@@ -64,8 +64,13 @@ while stage < asc.get_max_stage():
         stage += 1
     else:
         # Guessed letter exists single or multiple times in the word.
-        print("Correctly guessed! Go On!!!")
-        guess_word = util.fill_matching_letters_in_blank_spaces(actual_word, guess_word, letter)
+        guess_word_letters_added_tuple = util.fill_matching_letters_in_blank_spaces(actual_word, guess_word, letter)
+        guess_word = guess_word_letters_added_tuple[0]
+        letters_added = guess_word_letters_added_tuple[1]
+        if letters_added > 0:
+            print("Correctly guessed! Go On!!!")
+        else:
+            print("Letter exists in the word, but has already been revealed. Continue guessing!")
     
     # Check condition to see whether the word is completely guessed.
     if '_' not in guess_word:

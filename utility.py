@@ -4,17 +4,19 @@ def fill_matching_letters_in_blank_spaces(actual_word, guess_word, letter):
 
     # Checks one by one that the correctly guessed letter occurs at which numbered place in the original word.
     i = 0
+    replacements = 0
     while i < len(actual_word):
         # Matching index found at which correctly guessed letter occurs.
-        if letter == actual_word[i]:
+        if letter == actual_word[i] and guess_word[i*2] == "_":
             # For each letter in original word, guess word contains two chars: '_ ', thus modification 
             # must only replace the underscore '_', which occurs at every even index.
             guess_word[i*2] = letter
+            replacements += 1
         i += 1
 
     # After all modifications, joining all the characters in the list to retrieve the string.
     guess_word = "".join(guess_word)
-    return guess_word
+    return (guess_word, replacements)
 
 
 
